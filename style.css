@@ -1,0 +1,23 @@
+/**
+  * @ author : Kavishka Prabath
+  * @ since : 0.1.0
+**/
+
+* {
+    margin: auto;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+}
+
+td {
+    text-align: center;
+    background-color: #BA7A3A;
+    width: 65px;
+    height: 65px;
+}
