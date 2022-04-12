@@ -35,6 +35,19 @@ td {
     border-radius: 50px;
 }
 
+.redPiece {
+    width: 20px;
+    height: 20px;
+    padding: 12px;
+    background-color: red;
+    border: 1px solid white;
+    border-radius: 50px;
+}
+
 span {
+    display: inline-block;
+}
+
+p {
     display: inline-block;
 }
