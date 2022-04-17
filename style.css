@@ -120,3 +120,15 @@ p {
         width: 3vw;
     }
 }
+
+@media screen and (max-width: 345px) {
+    .red-piece {
+        height: 2.5vw;
+        width: 2.5vw;
+    }
+
+    .black-piece {
+        height: 2.5vw;
+        width: 2.5vw;
+    }
+}
