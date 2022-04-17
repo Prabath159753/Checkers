@@ -108,3 +108,15 @@ p {
         filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
     }
 }
+
+@media screen and (max-width: 380px) {
+    .red-piece {
+        height: 3vw;
+        width: 3vw;
+    }
+
+    .black-piece {
+        height: 3vw;
+        width: 3vw;
+    }
+}
