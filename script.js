@@ -14,3 +14,11 @@ const board = [
     null, 16, null, 17, null, 18, null, 19,
     20, null, 21, null, 22, null, 23, null
 ]
+
+/*---------- Cached Variables ----------*/
+
+// parses pieceId's and returns the index of that piece's place on the board
+let findPiece = function (pieceId) {
+    let parsed = parseInt(pieceId);
+    return board.indexOf(parsed);
+};
