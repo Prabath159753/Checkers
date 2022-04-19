@@ -22,3 +22,17 @@ let findPiece = function (pieceId) {
     let parsed = parseInt(pieceId);
     return board.indexOf(parsed);
 };
+
+// DOM references
+const cells = document.querySelectorAll("td");
+let redsPieces = document.querySelectorAll("p");
+let blacksPieces = document.querySelectorAll("span")
+const redTurnText = document.querySelectorAll(".red-turn-text");
+const blackTurnText = document.querySelectorAll(".black-turn-text");
+const divider = document.querySelector("#divider")
+
+// player properties
+let turn = true;
+let redScore = 12;
+let blackScore = 12;
+let playerPieces;
