@@ -66,3 +66,31 @@ function givePiecesEventListeners() {
         }
     }
 }
+
+/*---------- Logic ----------*/
+
+// holds the length of the players piece count
+function getPlayerPieces() {
+    if (turn) {
+        playerPieces = redsPieces;
+    } else {
+        playerPieces = blacksPieces;
+    }
+    removeCellOnclick();
+    resetBorders();
+}
+
+// removes possible moves from old selected piece (* this is needed because the user might re-select a piece *)
+function removeCellOnclick() {
+    for (let i = 0; i < cells.length; i++) {
+        cells[i].removeAttribute("onclick");
+    }
+}
+
+// resets borders to default
+function resetBorders() {
+    for (let i = 0; i < playerPieces.length; i++) {
+        playerPieces[i].style.border = "1px solid white";
+    }
+
+}
