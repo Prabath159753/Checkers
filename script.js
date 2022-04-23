@@ -231,27 +231,54 @@ function givePieceBorder() {
 // gives the cells on the board a 'click' based on the possible moves
 function giveCellsClick() {
     if (selectedPiece.seventhSpace) {
-        cells[selectedPiece.indexOfBoardPiece + 7].setAttribute("onclick");
+        cells[selectedPiece.indexOfBoardPiece + 7].setAttribute("onclick", "makeMove(7)");
     }
     if (selectedPiece.ninthSpace) {
-        cells[selectedPiece.indexOfBoardPiece + 9].setAttribute("onclick");
+        cells[selectedPiece.indexOfBoardPiece + 9].setAttribute("onclick", "makeMove(9)");
     }
     if (selectedPiece.fourteenthSpace) {
-        cells[selectedPiece.indexOfBoardPiece + 14].setAttribute("onclick");
+        cells[selectedPiece.indexOfBoardPiece + 14].setAttribute("onclick", "makeMove(14)");
     }
     if (selectedPiece.eighteenthSpace) {
-        cells[selectedPiece.indexOfBoardPiece + 18].setAttribute("onclick");
+        cells[selectedPiece.indexOfBoardPiece + 18].setAttribute("onclick", "makeMove(18)");
     }
     if (selectedPiece.minusSeventhSpace) {
-        cells[selectedPiece.indexOfBoardPiece - 7].setAttribute("onclick");
+        cells[selectedPiece.indexOfBoardPiece - 7].setAttribute("onclick", "makeMove(-7)");
     }
     if (selectedPiece.minusNinthSpace) {
-        cells[selectedPiece.indexOfBoardPiece - 9].setAttribute("onclick" );
+        cells[selectedPiece.indexOfBoardPiece - 9].setAttribute("onclick", "makeMove(-9)");
     }
     if (selectedPiece.minusFourteenthSpace) {
-        cells[selectedPiece.indexOfBoardPiece - 14].setAttribute("onclick");
+        cells[selectedPiece.indexOfBoardPiece - 14].setAttribute("onclick", "makeMove(-14)");
     }
     if (selectedPiece.minusEighteenthSpace) {
-        cells[selectedPiece.indexOfBoardPiece - 18].setAttribute("onclick");
+        cells[selectedPiece.indexOfBoardPiece - 18].setAttribute("onclick", "makeMove(-18)");
     }
+}
+
+/* v when the cell is clicked v */
+
+// makes the move that was clicked
+function makeMove(number) {
+    document.getElementById(selectedPiece.pieceId).remove();
+    cells[selectedPiece.indexOfBoardPiece].innerHTML = "";
+    if (turn) {
+        if (selectedPiece.isKing) {
+            cells[selectedPiece.indexOfBoardPiece + number].innerHTML = `<p class="red-piece king" id="${selectedPiece.pieceId}"></p>`;
+            redsPieces = document.querySelectorAll("p");
+        } else {
+            cells[selectedPiece.indexOfBoardPiece + number].innerHTML = `<p class="red-piece" id="${selectedPiece.pieceId}"></p>`;
+            redsPieces = document.querySelectorAll("p");
+        }
+    } else {
+        if (selectedPiece.isKing) {
+            cells[selectedPiece.indexOfBoardPiece + number].innerHTML = `<span class="black-piece king" id="${selectedPiece.pieceId}"></span>`;
+            blacksPieces = document.querySelectorAll("span");
+        } else {
+            cells[selectedPiece.indexOfBoardPiece + number].innerHTML = `<span class="black-piece" id="${selectedPiece.pieceId}"></span>`;
+            blacksPieces = document.querySelectorAll("span");
+        }
+    }
+
+
 }
