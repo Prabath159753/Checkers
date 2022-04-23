@@ -222,8 +222,36 @@ function givePieceBorder() {
     if (selectedPiece.seventhSpace || selectedPiece.ninthSpace || selectedPiece.fourteenthSpace || selectedPiece.eighteenthSpace
         || selectedPiece.minusSeventhSpace || selectedPiece.minusNinthSpace || selectedPiece.minusFourteenthSpace || selectedPiece.minusEighteenthSpace) {
         document.getElementById(selectedPiece.pieceId).style.border = "3px solid green";
-
+        giveCellsClick();
     } else {
         return;
+    }
+}
+
+// gives the cells on the board a 'click' based on the possible moves
+function giveCellsClick() {
+    if (selectedPiece.seventhSpace) {
+        cells[selectedPiece.indexOfBoardPiece + 7].setAttribute("onclick");
+    }
+    if (selectedPiece.ninthSpace) {
+        cells[selectedPiece.indexOfBoardPiece + 9].setAttribute("onclick");
+    }
+    if (selectedPiece.fourteenthSpace) {
+        cells[selectedPiece.indexOfBoardPiece + 14].setAttribute("onclick");
+    }
+    if (selectedPiece.eighteenthSpace) {
+        cells[selectedPiece.indexOfBoardPiece + 18].setAttribute("onclick");
+    }
+    if (selectedPiece.minusSeventhSpace) {
+        cells[selectedPiece.indexOfBoardPiece - 7].setAttribute("onclick");
+    }
+    if (selectedPiece.minusNinthSpace) {
+        cells[selectedPiece.indexOfBoardPiece - 9].setAttribute("onclick" );
+    }
+    if (selectedPiece.minusFourteenthSpace) {
+        cells[selectedPiece.indexOfBoardPiece - 14].setAttribute("onclick");
+    }
+    if (selectedPiece.minusEighteenthSpace) {
+        cells[selectedPiece.indexOfBoardPiece - 18].setAttribute("onclick");
     }
 }
