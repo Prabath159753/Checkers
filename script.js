@@ -216,3 +216,14 @@ function checkPieceConditions() {
 
     }
 }
+
+// gives the piece a green highlight for the user (showing its movable)
+function givePieceBorder() {
+    if (selectedPiece.seventhSpace || selectedPiece.ninthSpace || selectedPiece.fourteenthSpace || selectedPiece.eighteenthSpace
+        || selectedPiece.minusSeventhSpace || selectedPiece.minusNinthSpace || selectedPiece.minusFourteenthSpace || selectedPiece.minusEighteenthSpace) {
+        document.getElementById(selectedPiece.pieceId).style.border = "3px solid green";
+
+    } else {
+        return;
+    }
+}
