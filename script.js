@@ -29,7 +29,7 @@ let redsPieces = document.querySelectorAll("p");
 let blacksPieces = document.querySelectorAll("span")
 const redTurnText = document.querySelectorAll(".red-turn-text");
 const blackTurnText = document.querySelectorAll(".black-turn-text");
-const divider = document.querySelector("#divider")
+const divider = document.querySelector("#divider");
 
 // player properties
 let turn = true;
@@ -200,7 +200,7 @@ function checkAvailableJumpSpaces() {
 // restricts movement if the piece is a king
 function checkPieceConditions() {
     if (selectedPiece.isKing) {
-
+        givePieceBorder();
     } else {
         if (turn) {
             selectedPiece.minusSeventhSpace = false;
@@ -213,7 +213,7 @@ function checkPieceConditions() {
             selectedPiece.fourteenthSpace = false;
             selectedPiece.eighteenthSpace = false;
         }
-
+        givePieceBorder();
     }
 }
 
@@ -264,21 +264,106 @@ function makeMove(number) {
     cells[selectedPiece.indexOfBoardPiece].innerHTML = "";
     if (turn) {
         if (selectedPiece.isKing) {
-            cells[selectedPiece.indexOfBoardPiece + number].innerHTML = `<p class="red-piece king" id="${selectedPiece.pieceId}"></p>`;
+            cells[selectedPiece.indexOfBoardPiece + number].innerHTML = `<p class="redPiece king" id="${selectedPiece.pieceId}"></p>`;
             redsPieces = document.querySelectorAll("p");
         } else {
-            cells[selectedPiece.indexOfBoardPiece + number].innerHTML = `<p class="red-piece" id="${selectedPiece.pieceId}"></p>`;
+            cells[selectedPiece.indexOfBoardPiece + number].innerHTML = `<p class="redPiece" id="${selectedPiece.pieceId}"></p>`;
             redsPieces = document.querySelectorAll("p");
         }
     } else {
         if (selectedPiece.isKing) {
-            cells[selectedPiece.indexOfBoardPiece + number].innerHTML = `<span class="black-piece king" id="${selectedPiece.pieceId}"></span>`;
+            cells[selectedPiece.indexOfBoardPiece + number].innerHTML = `<span class="blackPiece king" id="${selectedPiece.pieceId}"></span>`;
             blacksPieces = document.querySelectorAll("span");
         } else {
-            cells[selectedPiece.indexOfBoardPiece + number].innerHTML = `<span class="black-piece" id="${selectedPiece.pieceId}"></span>`;
+            cells[selectedPiece.indexOfBoardPiece + number].innerHTML = `<span class="blackPiece" id="${selectedPiece.pieceId}"></span>`;
             blacksPieces = document.querySelectorAll("span");
         }
     }
 
-
+    let indexOfPiece = selectedPiece.indexOfBoardPiece
+    if (number === 14 || number === -14 || number === 18 || number === -18) {
+        changeData(indexOfPiece, indexOfPiece + number, indexOfPiece + number / 2);
+    } else {
+        changeData(indexOfPiece, indexOfPiece + number);
+    }
 }
+
+// Changes the board states data on the back end
+function changeData(indexOfBoardPiece, modifiedIndex, removePiece) {
+    board[indexOfBoardPiece] = null;
+    board[modifiedIndex] = parseInt(selectedPiece.pieceId);
+    if (turn && selectedPiece.pieceId < 12 && modifiedIndex >= 57) {
+        document.getElementById(selectedPiece.pieceId).classList.add("king")
+    }
+    if (turn === false && selectedPiece.pieceId >= 12 && modifiedIndex <= 7) {
+        document.getElementById(selectedPiece.pieceId).classList.add("king");
+    }
+    if (removePiece) {
+        board[removePiece] = null;
+        if (turn && selectedPiece.pieceId < 12) {
+            cells[removePiece].innerHTML = "";
+            blackScore--
+        }
+        if (turn === false && selectedPiece.pieceId >= 12) {
+            cells[removePiece].innerHTML = "";
+            redScore--
+        }
+    }
+    resetSelectedPieceProperties();
+    removeCellOnclick();
+    removeEventListeners();
+}
+
+// removes the 'onClick' event listeners for pieces
+function removeEventListeners() {
+    if (turn) {
+        for (let i = 0; i < redsPieces.length; i++) {
+            redsPieces[i].removeEventListener("click", getPlayerPieces);
+        }
+    } else {
+        for (let i = 0; i < blacksPieces.length; i++) {
+            blacksPieces[i].removeEventListener("click", getPlayerPieces);
+        }
+    }
+    checkForWin();
+}
+
+// Checks for a win
+function checkForWin() {
+    if (blackScore === 0) {
+        divider.style.display = "none";
+        for (let i = 0; i < redTurnText.length; i++) {
+            redTurnText[i].style.color = "black";
+            blackTurnText[i].style.display = "none";
+            redTurnText[i].textContent = "RED WINS!";
+        }
+    } else if (redScore === 0) {
+        divider.style.display = "none";
+        for (let i = 0; i < blackTurnText.length; i++) {
+            blackTurnText[i].style.color = "black";
+            redTurnText[i].style.display = "none";
+            blackTurnText[i].textContent = "BLACK WINS!";
+        }
+    }
+    changePlayer();
+}
+
+// Switches players turn
+function changePlayer() {
+    if (turn) {
+        turn = false;
+        for (let i = 0; i < redTurnText.length; i++) {
+            redTurnText[i].style.color = "lightGrey";
+            blackTurnText[i].style.color = "black";
+        }
+    } else {
+        turn = true;
+        for (let i = 0; i < blackTurnText.length; i++) {
+            blackTurnText[i].style.color = "lightGrey";
+            redTurnText[i].style.color = "black";
+        }
+    }
+    givePiecesEventListeners();
+}
+
+givePiecesEventListeners();

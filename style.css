@@ -86,14 +86,22 @@ p {
     margin-right: 15px;
 }
 
+.king.redPiece {
+    background-color: orange;
+}
+
+.king.blackPiece {
+    background-color: purple;
+}
+
 /* responsive start */
 @media screen and (max-width: 560px) {
-    .red-piece {
+    .redPiece {
         height: 4.5vw;
         width: 4.5vw;
     }
 
-    .black-piece {
+    .blackPiece {
         height: 4.5vw;
         width: 4.5vw;
     }
@@ -133,36 +141,36 @@ p {
 }
 
 @media screen and (max-width: 380px) {
-    .red-piece {
+    .redPiece {
         height: 3vw;
         width: 3vw;
     }
 
-    .black-piece {
+    .blackPiece {
         height: 3vw;
         width: 3vw;
     }
 }
 
 @media screen and (max-width: 345px) {
-    .red-piece {
+    .redPiece {
         height: 2.5vw;
         width: 2.5vw;
     }
 
-    .black-piece {
+    .blackPiece {
         height: 2.5vw;
         width: 2.5vw;
     }
 }
 
 @media screen and (max-width: 300px) {
-    .red-piece {
+    .redPiece {
         height: 1.5vw;
         width: 1.5vw;
     }
 
-    .black-piece {
+    .blackPiece {
         height: 1.5vw;
         width: 1.5vw;
     }
